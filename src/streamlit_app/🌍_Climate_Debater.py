@@ -1,9 +1,13 @@
 """Home page of the Streamlit app."""
 import json
+import pathlib
+import sys
 import time
 
 import openai
 import streamlit as st
+
+sys.path.append(str(pathlib.Path(__file__).parents[2].absolute()))
 
 from src.streamlit_app.utils.set_page_config import set_page_config
 
