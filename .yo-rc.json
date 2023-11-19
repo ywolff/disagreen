@@ -1,0 +1,15 @@
+{
+  "generator-sicarator": {
+    "promptValues": {
+      "authorName": "Yannick Wolff",
+      "authorEmail": "ybwolff@gmail.com",
+      "ci": ".github",
+      "includeApi": false,
+      "includeDvc": false,
+      "includeStreamlit": true
+    },
+    "projectName": "Climate Debater",
+    "projectSlug": "climate-debater",
+    "projectDescription": "Learn to debate climate change deniers with conversational AI"
+  }
+}
