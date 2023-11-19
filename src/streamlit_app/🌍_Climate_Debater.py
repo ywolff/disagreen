@@ -1,29 +1,55 @@
 """Home page of the Streamlit app."""
+import json
+import time
 
-from typing import TypedDict
-
-import numpy as np
+import openai
 import streamlit as st
-from openai import OpenAI
 
 from src.streamlit_app.utils.set_page_config import set_page_config
 
-
-class DebaterResponse(TypedDict):
-    """Response from the debater AI."""
-
-    response: str
-    is_convinced: bool
+ASSISTANT_ID = "asst_HRcxWWtlex8F5rf8rrDRx9tK"
 
 
-def dummy_get_response(
-    client: OpenAI, messages: list[dict[str, str]]
-) -> DebaterResponse:
-    """Dummy response from the debater AI."""
-    return {
-        "response": "I think that we should use more solar energy.",
-        "is_convinced": np.random.choice([True, False]),
-    }
+def get_response(
+    client: openai.OpenAI,
+    prompt: str,
+) -> None:
+    """Get response from assistant, update session state, and rerun app."""
+    client.beta.threads.messages.create(
+        thread_id=st.session_state["thread"].id,
+        role="user",
+        content=prompt,
+    )
+    st.session_state["run"] = client.beta.threads.runs.create(
+        thread_id=st.session_state["thread"].id,
+        assistant_id=ASSISTANT_ID,
+    )
+    completed = False
+    while not completed:
+        run = client.beta.threads.runs.retrieve(
+            thread_id=st.session_state["thread"].id,
+            run_id=st.session_state["run"].id,
+        )
+        if run.status == "completed":
+            completed = True
+        else:
+            time.sleep(0.1)
+    thread_messages = client.beta.threads.messages.list(
+        thread_id=st.session_state["thread"].id
+    ).data
+    st.session_state["messages"] = [
+        {
+            "content": json.loads(thread_message.content[0].text.value)["response"]
+            if thread_message.role == "assistant"
+            else thread_message.content[0].text.value,
+            "role": thread_message.role,
+        }
+        for thread_message in thread_messages
+    ]
+    st.session_state["is_convinced"] = json.loads(
+        thread_messages[0].content[0].text.value
+    )["is_convinced"]
+    st.rerun()
 
 
 def main() -> None:
@@ -31,42 +57,31 @@ def main() -> None:
     set_page_config()
     st.title("Welcome to Climate Debater")
 
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+    client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
     if "messages" not in st.session_state:
-        st.session_state.messages = []
+        st.session_state["messages"] = []
     if "is_convinced" not in st.session_state:
-        st.session_state.is_convinced = False
+        st.session_state["is_convinced"] = False
+    if "thread" not in st.session_state:
+        st.session_state["thread"] = client.beta.threads.create()
+        get_response(client, prompt="Que penses-tu du dérèglement climatique ?")
 
-    for message in st.session_state.messages:
+    if st.session_state["is_convinced"]:
+        st.success("The debater is convinced!")
+    else:
+        st.error("The debater is not yet convinced!")
+
+    for message in reversed(st.session_state["messages"]):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    if prompt := st.chat_input("What is up?"):
-        st.session_state.messages.append({"role": "user", "content": prompt})
+    if prompt := st.chat_input("Votre réponse"):
         with st.chat_message("user"):
             st.markdown(prompt)
-
         with st.chat_message("assistant"):
-            message_placeholder = st.empty()
-            debater_response = dummy_get_response(
-                client,
-                [
-                    {"role": m["role"], "content": m["content"]}
-                    for m in st.session_state.messages
-                ],
-            )
-            message_placeholder.markdown(debater_response["response"])
-
-        st.session_state.messages.append(
-            {"role": "assistant", "content": debater_response["response"]}
-        )
-        st.session_state.is_convinced = debater_response["is_convinced"]
-
-    if st.session_state.is_convinced:
-        st.success("The debater is convinced!")
-    else:
-        st.error("The debater is not convinced!")
+            st.text("...")
+        get_response(client, prompt=prompt)
 
 
 if __name__ == "__main__":
