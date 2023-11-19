@@ -58,7 +58,7 @@ def get_response(
 def main() -> None:
     """Home page of the Streamlit app."""
     set_page_config()
-    st.title("Welcome to Climate Debater")
+    st.header("Convaincs ton interlocuteur qu'il faut agir pour le climat !")
 
     client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
@@ -68,23 +68,24 @@ def main() -> None:
         st.session_state["is_convinced"] = False
     if "thread" not in st.session_state:
         st.session_state["thread"] = client.beta.threads.create()
-        get_response(client, prompt="Que penses-tu du dérèglement climatique ?")
-
-    if st.session_state["is_convinced"]:
-        st.success("The debater is convinced!")
-    else:
-        st.error("The debater is not yet convinced!")
+        with st.spinner("Chargement..."):
+            get_response(client, prompt="Que penses-tu du dérèglement climatique ?")
 
     for message in reversed(st.session_state["messages"]):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    if prompt := st.chat_input("Votre réponse"):
+    if prompt := st.chat_input("Ta réponse"):
         with st.chat_message("user"):
             st.markdown(prompt)
         with st.chat_message("assistant"):
             st.text("...")
         get_response(client, prompt=prompt)
+
+    if st.session_state["is_convinced"]:
+        st.success("Tu as convaincu ton interlocuteur, bravo !")
+    else:
+        st.error("Ton interlocuteur ne semble pas encore convaincu...")
 
 
 if __name__ == "__main__":
