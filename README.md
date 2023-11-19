@@ -2,7 +2,7 @@
 
 > Learn to debate climate change deniers with conversational AI
 
-Bootstrapped with [Sicarator](https://github.com/sicara/sicarator).
+*Bootstrapped with [Sicarator](https://github.com/sicara/sicarator)*
 
 ## Project requirements
 
