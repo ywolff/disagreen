@@ -39,16 +39,19 @@ def get_response(
     ).data
     st.session_state["messages"] = [
         {
-            "content": json.loads(thread_message.content[0].text.value)["response"]
+            "content": ""
+            if not hasattr(thread_message.content[0], "text")
+            else json.loads(thread_message.content[0].text.value)["response"]
             if thread_message.role == "assistant"
             else thread_message.content[0].text.value,
             "role": thread_message.role,
         }
         for thread_message in thread_messages
     ]
-    st.session_state["is_convinced"] = json.loads(
-        thread_messages[0].content[0].text.value
-    )["is_convinced"]
+    if hasattr(thread_messages[0].content[0], "text"):
+        st.session_state["is_convinced"] = json.loads(
+            thread_messages[0].content[0].text.value
+        )["is_convinced"]
     st.rerun()
 
 
