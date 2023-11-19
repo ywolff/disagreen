@@ -69,7 +69,10 @@ def main() -> None:
     if "thread" not in st.session_state:
         st.session_state["thread"] = client.beta.threads.create()
         with st.spinner("Chargement..."):
-            get_response(client, prompt="Que penses-tu du dérèglement climatique ?")
+            get_response(
+                client,
+                prompt="Penses tu qu'il faut agir davantage pour lutter contre le dérèglement climatique ?",
+            )
 
     for message in reversed(st.session_state["messages"]):
         with st.chat_message(message["role"]):
