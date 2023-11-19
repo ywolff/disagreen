@@ -6,7 +6,7 @@
 
 ## Project requirements
 
-### Pyenv and `Python 3.11.6`
+### Pyenv and `Python 3.11.4`
 
 - Install [pyenv](https://github.com/pyenv/pyenv) to manage your Python versions and virtual environments:
   ```bash
@@ -23,7 +23,7 @@
 
 - Install the right version of `Python` with `pyenv`:
   ```bash
-  pyenv install 3.11.6
+  pyenv install 3.11.4
   ```
 
 ### Poetry
@@ -34,7 +34,7 @@
   ```
   *If you have not previously installed any Python version, you may need to set your global Python version before installing Poetry:*
     ```bash
-    pyenv global 3.11.6
+    pyenv global 3.11.4
     ```
 
 ## Installation
@@ -43,7 +43,7 @@
 
 1. Create a `pyenv` virtual environment and link it to your project folder:
     ```bash
-    pyenv virtualenv 3.11.6 climate-debater
+    pyenv virtualenv 3.11.4 climate-debater
     pyenv local climate-debater
     ```
     *Now, every time you are in your project directory your virtualenv will be activated!*
