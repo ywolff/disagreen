@@ -7,7 +7,7 @@ import streamlit as st
 
 from src.streamlit_app.utils.set_page_config import set_page_config
 
-ASSISTANT_ID = "asst_HRcxWWtlex8F5rf8rrDRx9tK"
+ASSISTANT_ID = "asst_PgZZtxItYNNAo0UINFliTvCw"
 
 
 def get_response(
