@@ -3,7 +3,7 @@
 ########################################################################################################################
 
 install:
-	pyenv virtualenv --force 3.11.4 climate-debater
+	pyenv virtualenv --force 3.11.6 climate-debater
 	pyenv local climate-debater
 	VIRTUAL_ENV=$$(pyenv prefix) poetry install --no-root --sync
 
