@@ -4,7 +4,7 @@ inputs:
   python_version:
     required: true
     type: string
-    default: "3.11.4"
+    default: "3.11.6"
   poetry_version:
     required: true
     type: string
