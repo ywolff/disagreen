@@ -17,6 +17,7 @@ from src.streamlit_app.utils.set_page_config import set_page_config  # noqa E402
 INITIAL_PROMPT = (
     "Penses tu qu'il faut agir davantage pour lutter contre le dérèglement climatique ?"
 )
+# TODO: Avoid coupling with `assistants_config.py`
 DEBATER_NAMES = ["Martine", "Sophie", "Francis"]
 
 
