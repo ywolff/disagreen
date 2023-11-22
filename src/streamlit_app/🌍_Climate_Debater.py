@@ -1,11 +1,16 @@
 """Home page of the Streamlit app."""
 import json
+import sys
 import time
+from pathlib import Path
 
 import openai
 import streamlit as st
 
-from src.streamlit_app.utils.set_page_config import set_page_config
+# Needed to make absolute imports from `src` work on Streamlit Cloud
+sys.path.append(str(Path(__file__).parents[2].absolute()))
+
+from src.streamlit_app.utils.set_page_config import set_page_config  # noqa: E402
 
 ASSISTANT_ID = "asst_PgZZtxItYNNAo0UINFliTvCw"
 
