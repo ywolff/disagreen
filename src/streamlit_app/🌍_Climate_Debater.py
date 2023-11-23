@@ -47,7 +47,7 @@ def main() -> None:
             text=f"Niveau {st.session_state['current_level'] + 1}",
         )
     st.info(
-        f"Convaincs {DEBATER_NAMES[st.session_state['current_level']]} qu'il faut agir pour le climat !",
+        f"Essaye de convaincre {DEBATER_NAMES[st.session_state['current_level']]} qu'il faut agir pour le climat !",
     )
     st.divider()
 
