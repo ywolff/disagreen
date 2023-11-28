@@ -3,8 +3,8 @@
 ########################################################################################################################
 
 install:
-	pyenv virtualenv --force 3.11.6 climate-debater
-	pyenv local climate-debater
+	pyenv virtualenv --force 3.11.6 disagreen
+	pyenv local disagreen
 	VIRTUAL_ENV=$$(pyenv prefix) poetry install --no-root --sync
 
 ########################################################################################################################
@@ -34,4 +34,4 @@ type-check:
 ########################################################################################################################
 
 start-streamlit-app:
-	poetry run streamlit run "src/streamlit_app/🌍_Climate_Debater.py"
+	poetry run streamlit run "src/streamlit_app/🌍_Disagreen.py"

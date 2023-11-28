@@ -1,7 +1,7 @@
 """Util to set common page config to all streamlit pages."""
 import streamlit as st
 
-STREAMLIT_TITLE = "Climate Debater"
+STREAMLIT_TITLE = "Disagreen"
 
 
 def set_page_config() -> None:

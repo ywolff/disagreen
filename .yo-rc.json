@@ -8,8 +8,8 @@
       "includeDvc": false,
       "includeStreamlit": true
     },
-    "projectName": "Climate Debater",
-    "projectSlug": "climate-debater",
+    "projectName": "Disagreen",
+    "projectSlug": "disagreen",
     "projectDescription": "Learn to debate climate change deniers with conversational AI"
   }
 }
