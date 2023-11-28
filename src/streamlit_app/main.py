@@ -39,7 +39,7 @@ def main() -> None:
 
     col_1, col_2 = st.columns([1, 3])
     with col_1:
-        st.subheader("🌍 Disagreen")
+        st.subheader("🗣️🍀 Disagreen")
     with col_2:
         st.progress(
             value=st.session_state["current_level"]
