@@ -37,10 +37,26 @@ def main() -> None:
     if "is_convinced" not in st.session_state:
         st.session_state["is_convinced"] = False
 
-    col_1, col_2 = st.columns([1, 3])
-    with col_1:
-        st.subheader("🗣️🍀 Disagreen")
-    with col_2:
+    title_column, credits_column = st.columns([1, 2])
+    with title_column:
+        st.header("🗣️🍀 Disagreen")
+    with credits_column:
+        author_link_style = "font-weight: 600; color: #0085cc;"
+        sicara_link_style = "font-weight: 600; color: #e9b381; font-size: 1.2em;"
+        credits_html = f"""
+        <div style="text-align: right;">
+            Développé avec ❤️ par
+            <a href="https://www.linkedin.com/in/ywolff/" style="{author_link_style}">Yannick</a>,
+            <a href="https://www.linkedin.com/in/mathieu-soul/" style="{author_link_style}">Mathieu</a> et
+            <a href="https://www.linkedin.com/in/pierre-henri-cumenge-7265a884/" style="{author_link_style}">PH</a>
+            - ingénieurs chez
+            <a href="https://www.sicara.fr/" style="{sicara_link_style}">Sicara</a>
+        </div>
+        """
+        st.markdown(credits_html, unsafe_allow_html=True)
+    st.markdown("#### *Change l'avis des sceptiques !*<br />", unsafe_allow_html=True)
+    _, level_column = st.columns([2, 3])
+    with level_column:
         st.progress(
             value=st.session_state["current_level"]
             / len(st.session_state["assistants_ids"]),
