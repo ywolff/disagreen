@@ -6,7 +6,7 @@ This folder contains all the code for the project [Streamlit](https://streamlit.
 
 To run the Streamlit app, run the following command from the root of the project:
 ```bash
-streamlit run "src/streamlit_app/🌍_Disagreen.py"
+streamlit run "src/streamlit_app/main.py"
 ```
 or
 ```bash
