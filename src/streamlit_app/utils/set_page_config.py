@@ -6,4 +6,8 @@ STREAMLIT_TITLE = "Disagreen"
 
 def set_page_config() -> None:
     """Set page config with wide layout and page title."""
-    st.set_page_config(layout="wide", page_title=STREAMLIT_TITLE)
+    st.set_page_config(
+        layout="wide",
+        page_title=STREAMLIT_TITLE,
+        page_icon="🗣️",
+    )
