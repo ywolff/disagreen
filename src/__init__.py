@@ -1,1 +1,1 @@
-"""Climate Debater."""
+"""Disagreen."""

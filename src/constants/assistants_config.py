@@ -3,7 +3,7 @@
 To be used by the `create_assistants.py` script.
 """
 
-ASSISTANT_NAME_PREFIX = "climate-debater-"
+ASSISTANT_NAME_PREFIX = "disagreen-"
 ASSISTANT_DESCRIPTION = (
     "A Climate Change debate simulator, that has to be convinced to change its mind."
 )

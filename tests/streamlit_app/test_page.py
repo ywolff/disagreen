@@ -6,7 +6,7 @@ from streamlit.testing.v1 import AppTest
 from src.constants.paths import PROJECT_ROOT_PATH
 
 STREAMLIT_APP_PATH = PROJECT_ROOT_PATH / "src" / "streamlit_app"
-STREAMLIT_PAGE_PATH = STREAMLIT_APP_PATH / "🌍_Climate_Debater.py"
+STREAMLIT_PAGE_PATH = STREAMLIT_APP_PATH / "main.py"
 
 
 @patch("openai.OpenAI")

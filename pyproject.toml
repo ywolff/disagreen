@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "climate-debater"
+name = "disagreen"
 version = "0.1.0"
 description = "Learn to debate climate change deniers with conversationnal AI"
 authors = ["Yannick Wolff <ybwolff@gmail.com>"]

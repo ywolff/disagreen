@@ -1,1 +1,1 @@
-"""Automated tests for Climate Debater."""
+"""Automated tests for Disagreen."""

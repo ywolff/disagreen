@@ -1,4 +1,4 @@
-# Climate Debater
+# Disagreen
 
 > Learn to debate climate change deniers with conversational AI
 
@@ -43,8 +43,8 @@
 
 1. Create a `pyenv` virtual environment and link it to your project folder:
     ```bash
-    pyenv virtualenv 3.11.6 climate-debater
-    pyenv local climate-debater
+    pyenv virtualenv 3.11.6 disagreen
+    pyenv local disagreen
     ```
     *Now, every time you are in your project directory your virtualenv will be activated!*
 
