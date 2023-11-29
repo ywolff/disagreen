@@ -18,8 +18,7 @@ def test_streamlit_page(openai_mock) -> None:
     ].text.value = '{"response": "response", "is_convinced": true}'
 
     app_test = AppTest.from_file(str(STREAMLIT_PAGE_PATH))
-    app_test.secrets["OPENAI_API_KEY"] = "API_KEY"
     app_test.run()
 
     assert not app_test.exception
-    openai_mock.assert_called_with(api_key="API_KEY")
+    openai_mock.assert_called_with()
