@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  streamlit_app:
+    image: streamlit_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src:/code/src
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}

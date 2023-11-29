@@ -25,7 +25,7 @@ def main() -> None:
     """Home page of the Streamlit app."""
     set_page_config()
 
-    client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+    client = openai.OpenAI()
 
     if "assistants_ids" not in st.session_state:
         with open(ASSISTANTS_IDS_YAML_PATH) as assistants_ids_yaml:
