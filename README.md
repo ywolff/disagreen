@@ -2,6 +2,8 @@
 
 > Learn to debate climate change deniers with conversational AI
 
+The app is available at [disagreen.io](https://disagreen.io)
+
 *Bootstrapped with [Sicarator](https://github.com/sicara/sicarator)*
 
 ## Project requirements
